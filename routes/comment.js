@@ -8,7 +8,7 @@ router.get("/comments", async (req, res) => {
   console.log(comments);
 
   res.json({
-    msg: "Hello React!!",
+    comments,
   });
 });
 
