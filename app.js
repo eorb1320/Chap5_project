@@ -13,7 +13,12 @@ db.on("error", console.error.bind(console, "connection error:"));
 const app = express();
 const port = 5000;
 
-app.use(cors());
+const corsOption = {
+  origin: "http://localhost:3000/",
+  credentials: true,
+};
+
+app.use(cors(corsOption));
 app.get("/cors-test", (req, res) => {
   res.send("hi");
 });
