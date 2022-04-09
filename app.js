@@ -12,11 +12,9 @@ db.on("error", console.error.bind(console, "connection error:"));
 const app = express();
 const port = 3000;
 
-// const postsRouter = require("./routes/post");
 const commentsRouter = require("./routes/comment");
-// const usersRouter = require("./routes/user");
 
-app.use("/api", [postsRouter, commentsRouter, usersRouter]);
+app.use("/api", [commentsRouter]);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("static"));
 app.use(express.json());
