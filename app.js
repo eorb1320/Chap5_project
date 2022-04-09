@@ -23,7 +23,6 @@ const commentsRouter = require("./routes/comment");
 
 app.use("/api", [commentsRouter]);
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static("static"));
 app.use(express.json());
 
 app.listen(port, () => {
