@@ -13,12 +13,18 @@ db.on("error", console.error.bind(console, "connection error:"));
 const app = express();
 const port = 5000;
 
-const corsOption = {
-  origin: "https://localhost:3000",
-  credentials: true,
-};
+// const whitelist = ["http://localhost:3000"];
+// const corsOptions = {
+//   origin: function (origin, callback) {
+//     if (whitelist.indexOf(origin) !== -1) {
+//       callback(null, true);
+//     } else {
+//       callback(new Error("Not Allowed Origin!"));
+//     }
+//   },
+// };
+app.use(cors());
 
-app.use(cors(corsOption));
 app.get("/cors-test", (req, res) => {
   res.send("hi");
 });

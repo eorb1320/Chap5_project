@@ -4,10 +4,11 @@ const router = express.Router();
 
 //테스트 요청
 router.get("/comments", async (req, res) => {
-  const comments = await Comments.find({});
+  const [comments] = await Comments.find({});
+  console.log(comments);
 
   res.json({
-    comments,
+    msg: "Hello React!!",
   });
 });
 
