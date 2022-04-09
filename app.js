@@ -24,6 +24,11 @@ const commentsRouter = require("./routes/comment");
 app.use("/api", [commentsRouter]);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.static("static"));
+
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/static/test.html");
+});
 
 app.listen(port, () => {
   console.log(port, "Server is listening...");
