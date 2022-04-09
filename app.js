@@ -11,7 +11,7 @@ const db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error:"));
 
 const app = express();
-const port = 3000;
+const port = 5000;
 
 app.use(cors());
 app.get("/cors-test", (req, res) => {
