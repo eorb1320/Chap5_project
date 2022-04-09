@@ -1,7 +1,7 @@
 const express = require("express");
 const Posts = require("../schema/post.js");
 const router = express.Router();
-const { upload } = require('./upload');
+const upload = require('./upload');
 const authMiddleware = require('./middlewares/auth-middleware.js');
 
 //전체 조회 
@@ -53,11 +53,14 @@ router.post('/posts', authMiddleware, async (req, res) => {
         const { userId } = res.locals;
         const emaill = userId['emaill']
         const profile = userId['profile']
-
-        await Posts.creat({ title, content, item, image, createdAt, emaill, profile })
-        res.status(200).send({
-            result: '게시글 작성에 성공하였습니다.'
-        });
+        //공백값 확인
+        if(title === null && content === null && item === null &&
+            title === '' && content === '' && item === ''){
+                await Posts.creat({ title, content, item, image, createdAt, emaill, profile })
+                res.status(200).send({
+                    result: '게시글 작성에 성공하였습니다.'
+                });
+            }
     } catch (error) {
         res.status(400).send({
             errorMessage: "게시글 작성에 실패하였습니다."
