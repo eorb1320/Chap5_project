@@ -87,9 +87,6 @@ router.put('/posts/:postId',authMiddleware, async (req, res) =>{
             await Posts.updateOne({ postId }, { $set: {  title, content, item, image, createdAt} });
             res.send({ result: "success" });
           }
-          await Posts.updateOne({ postId }, { $set: {  title, content, item, image, createdAt} });
-            res.send({ result: "success" });
-
     }catch(error){
         res.status(400).send({
             errorMessage: "게시글 수정에 실패하였습니다."
@@ -109,7 +106,6 @@ router.delete('/posts/:postId', authMiddleware,async (req, res) =>{
         await Posts.delete({});
         res.send({ result: "삭제가 되었습니다." });
       }
-
 }catch(error){
     res.status(400).send({
         errorMessage: "게시글 삭제에 실패하였습니다."
