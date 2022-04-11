@@ -47,7 +47,8 @@ const commentsRouter = require("./routes/comment");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(bodyParser.json());
-app.use("/api", [commentsRouter, usersRouter]);
+app.use("/api", [commentsRouter]);
+// app.use("/api", [commentsRouter, usersRouter]);
 
 // app.get("/", async (req,res) => {
 //   // console.log("mainpage")
