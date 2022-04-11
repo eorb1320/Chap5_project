@@ -7,7 +7,7 @@ const router = express.Router();
 //전체 조회 
 router.get('/postList', async (req, res, next) => {
     try {
-        const postList = await Posts.find({}).sort(-createdAt).exec();
+        const postList = await Posts.find({}).sort("-createdAt").exec();
         res.json({ postList });
     } catch (error) {
         res.status(400).send({
@@ -50,11 +50,12 @@ router.put('/posts/:postId', async (req, res) => {
 router.post('/posts',  async (req, res) => {
     try {
         const { title, content, item, image, createdAt } = req.body;
+        console.log(req.body)
         /* const { userId } = res.locals;
         const emaill = userId['emaill']
         const profile = userId['profile'] */
         //공백값 확인
-        if(title !== null && title !== ''&& content !== null && content !== ''&&
+         if(title !== null && title !== ''&& content !== null && content !== ''&&
         item !== null && item !== ''){
             const posts = new Posts({ title, content, item, image, createdAt });
             await posts.save();
@@ -63,6 +64,7 @@ router.post('/posts',  async (req, res) => {
             });
 
         } 
+
     } catch (error) {
         res.status(400).send({
             errorMessage: "게시글 작성에 실패하였습니다."
@@ -111,7 +113,7 @@ router.delete('/posts/:postId', async (req, res) =>{
       } */
       const postId1 = await Posts.findOne({postId}).exec();
       if(postId === postId1){
-        await bords.delete({});
+        await Posts.delete({});
         res.send({ result: "삭제가 되었습니다." });
       }
 }catch(error){
