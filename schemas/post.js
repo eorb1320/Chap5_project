@@ -25,6 +25,10 @@ const postsSchema = new mongoose.Schema({
          type: String,
          required: true,
      },
+    nickname: {
+        type: String,
+        required: true,
+    },
     createdAt: {
         type: Date,
     },
