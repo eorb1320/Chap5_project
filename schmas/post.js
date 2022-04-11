@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 //mongodb 데어터 타입 지정
 const postsSchema = new mongoose.Schema({
-    // emaill: {
-    //     type: String,
-    //     required: true,
-    // },
+     emaill: {
+         type: String,
+         required: true,
+     },
     title: {
         type: String,
         required: true,
@@ -21,10 +21,10 @@ const postsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    // profile: {
-    //     type: String,
-    //     required: true,
-    // },
+     profile: {
+         type: String,
+         required: true,
+     },
     createdAt: {
         type: Date,
     },
