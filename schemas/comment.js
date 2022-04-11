@@ -14,7 +14,7 @@ const commentsSchema = mongoose.Schema({
   //   type: String,
   // },
   createdAt: {
-    type: String,
+    type: Date,
   },
 });
 
