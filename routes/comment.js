@@ -16,6 +16,8 @@ const router = express.Router();
 router.post("/comments", async (req, res) => {
   const { comment, createdAt } = req.body;
   const postId = req.params;
+  console.log(postId);
+  console.log(typeof postId);
   // const userId = res.locals.user._id;
   // const { nickname, userImage } = res.locals.user;
   // console.log(userId);
