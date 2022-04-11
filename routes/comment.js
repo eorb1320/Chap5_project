@@ -46,7 +46,7 @@ router.get("/comments/:postId", async (req, res) => {
 });
 
 //댓글을 수정합니다.
-router.put("/comments/:commentId", authMiddleware, async (req, res) => {
+router.put("/comments/:commentId", async (req, res) => {
   const commentId = JSON.stringify(req.params);
   const { comment } = req.body;
   console.log(comment, commentId);
