@@ -36,7 +36,7 @@ router.post("/comments/:postId", async (req, res) => {
 
 //댓글 목록 조회
 router.get("/comments/:postId", async (req, res) => {
-  const postId = req.params;
+  const postId = JSON.stringify(req.params);
   console.log(postId);
   const comments = await Comments.find({ postId: postId });
 
@@ -45,22 +45,22 @@ router.get("/comments/:postId", async (req, res) => {
   });
 });
 
-// //댓글을 수정합니다.
-// router.put("/comments/:commentId", authMiddleware, async (req, res) => {
-//   const commentId = req.params;
-//   const { comment } = req.body;
-//   console.log(comment, commentId);
+//댓글을 수정합니다.
+router.put("/comments/:commentId", authMiddleware, async (req, res) => {
+  const commentId = JSON.stringify(req.params);
+  const { comment } = req.body;
+  console.log(comment, commentId);
 
-//   const existComment = await Comments.find({ commentId });
+  const existComment = await Comments.find({ commentId });
 
-//   if (existComment.length) {
-//     await Comments.updateOne({ _id: commentId }, { $set: { comment } });
-//   }
+  if (existComment.length) {
+    await Comments.updateOne({ _id: commentId }, { $set: { comment } });
+  }
 
-//   res.status(200).json({
-//     msg: "수정 완료!",
-//   });
-// });
+  res.status(200).json({
+    msg: "수정 완료!",
+  });
+});
 
 // //댓글을 삭제합니다.
 // router.delete("/comments/:commentId", authMiddleware, async (req, res) => {
