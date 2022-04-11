@@ -62,22 +62,22 @@ router.put("/comments/:commentId", async (req, res) => {
   });
 });
 
-// //댓글을 삭제합니다.
-// router.delete("/comments/:commentId", authMiddleware, async (req, res) => {
-//   const commentId = req.params;
-//   console.log(commentId);
+//댓글을 삭제합니다.
+router.delete("/comments/:commentId", async (req, res) => {
+  const commentId = req.params.commentId;
+  console.log(commentId);
 
-//   const existComment = await Comments.find({ _id: commentId });
-//   console.log(existComment);
+  const existComment = await Comments.find({ _id: commentId });
+  console.log(existComment);
 
-//   if (existComment.length > 0) {
-//     await Comments.deleteOne({ _id: commentId });
-//   }
+  if (existComment.length > 0) {
+    await Comments.deleteOne({ _id: commentId });
+  }
 
-//   res.status(200).json({
-//     success: true,
-//     msg: "삭제 완료!",
-//   });
-// });
+  res.status(200).json({
+    success: true,
+    msg: "삭제 완료!",
+  });
+});
 
 module.exports = router;
