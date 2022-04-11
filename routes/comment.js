@@ -36,7 +36,7 @@ router.post("/comments/:postId", async (req, res) => {
 
 //댓글 목록 조회
 router.get("/comments/:postId", async (req, res) => {
-  const postId = JSON.stringify(req.params);
+  const postId = req.params.postId;
   console.log(postId);
   const comments = await Comments.find({ postId: postId });
 
