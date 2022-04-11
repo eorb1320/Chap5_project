@@ -29,7 +29,7 @@ router.post("/comments/:postId", async (req, res) => {
     postId,
   });
 
-  const comments = await Comments.find({ postId: postId });
+  const comments = await Comments.find({ _id: createdComment._id });
 
   res.status(201).json({
     comments,
