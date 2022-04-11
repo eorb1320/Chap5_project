@@ -15,6 +15,8 @@ router.get("/comments", async (req, res) => {
 //댓글을 저장합니다.
 router.post("/comments", async (req, res) => {
   const { comment, createdAt } = req.body;
+  console.log(req);
+  console.log(req.body);
   // const postId = req.params;
   // const userId = res.locals.user._id;
   // const { nickname, userImage } = res.locals.user;
