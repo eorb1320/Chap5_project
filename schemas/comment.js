@@ -10,9 +10,9 @@ const commentsSchema = mongoose.Schema({
   //   ref: "User",
   //   required: true,
   // },
-  // postId: {
-  //   type: String,
-  // },
+  postId: {
+    type: String,
+  },
   createdAt: {
     type: String,
   },

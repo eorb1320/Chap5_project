@@ -1,34 +1,34 @@
-const express = require("express");
-const Posts = require("../schemas/post.js");
-const router = express.Router();
-// const upload = require('./upload');
-const authMiddleware = require('./middlewares/auth-middleware.js.js');
+// const express = require("express");
+// const Posts = require("../schemas/post.js");
+// const router = express.Router();
+// // const upload = require('./upload');
+// const authMiddleware = require('./middlewares/auth-middleware.js.js');
 
-//전체 조회 
-router.get('/postList', async (req, res, next) => {
-    try {
-        const postList = await Posts.find({}).sort("-createdAt").exec();
-        res.json({ postList });
-    } catch (error) {
-        res.status(400).send({
-            errorMessage: "게시글 조회에 실패하였습니다."
-        });
-        next(error);
-    }
-})
+// //전체 조회 
+// router.get('/postList', async (req, res, next) => {
+//     try {
+//         const postList = await Posts.find({}).sort("-createdAt").exec();
+//         res.json({ postList });
+//     } catch (error) {
+//         res.status(400).send({
+//             errorMessage: "게시글 조회에 실패하였습니다."
+//         });
+//         next(error);
+//     }
+// })
 
-//상세조회
-router.put('/posts/:postId', async (req, res) => {
-    try {
-       const {postId} = req.params;
-       const postList = await Posts.find({postId}).exec();
-       res.json({postList});
-    } catch (error) {
-        res.status(400).send({
-            errorMessage: "게시글 조회에 실패하였습니다."
-        });
-    }
-})
+// //상세조회
+// router.put('/posts/:postId', async (req, res) => {
+//     try {
+//        const {postId} = req.params;
+//        const postList = await Posts.find({postId}).exec();
+//        res.json({postList});
+//     } catch (error) {
+//         res.status(400).send({
+//             errorMessage: "게시글 조회에 실패하였습니다."
+//         });
+//     }
+// })
 
 
 /* router.post('/image', upload.single('image'), async (req, res) => {
