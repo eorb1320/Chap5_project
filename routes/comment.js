@@ -29,8 +29,10 @@ router.post("/comments/:postId", async (req, res) => {
     postId,
   });
 
+  const comments = await Comments.find({ postId: postId });
+
   res.status(201).json({
-    msg: "등록 완료!",
+    comments,
   });
 });
 
