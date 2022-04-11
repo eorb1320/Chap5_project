@@ -3,33 +3,32 @@ const Comments = require("../schemas/comment");
 const router = express.Router();
 
 //테스트 요청
-router.get("/comments", async (req, res) => {
-  const [comments] = await Comments.find({});
-  console.log(comments);
-
-  res.json({
-    comments,
-  });
-});
-
-// //댓글을 저장합니다.
-// router.post("/comments/:postId", authMiddleware, async (req, res) => {
-//   const { comment, createdAt } = req.body;
-//   const postId = req.params;
-//   const userId = res.locals.user._id;
-//   console.log(userId);
-
-//   const createdComment = await Comments.create({
-//     comment,
-//     createdAt,
-//     postId,
-//     userId,
-//   });
+// router.get("/comments", async (req, res) => {
+//   const [comments] = await Comments.find({});
+//   console.log(comments);
 
 //   res.json({
-//     msg: "등록 완료!",
+//     comments,
 //   });
 // });
+
+//댓글을 저장합니다.
+router.post("/comments", async (req, res) => {
+  const { comment, createdAt } = req.body;
+  // const postId = req.params;
+  // const userId = res.locals.user._id;
+  // const { nickname, userImage } = res.locals.user;
+  // console.log(userId);
+
+  const createdComment = await Comments.create({
+    comment,
+    createdAt,
+  });
+
+  res.json({
+    msg: "등록 완료!",
+  });
+});
 
 // //댓글 목록 조회
 // router.get("/comments/:postId", async (req, res) => {
