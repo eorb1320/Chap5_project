@@ -2,18 +2,18 @@ const express = require("express");
 const Comments = require("../schemas/comment");
 const router = express.Router();
 
-// 테스트 요청
-router.get("/comments", async (req, res) => {
-  const [comments] = await Comments.find({});
-  console.log(comments);
+// // 테스트 요청
+// router.get("/comments", async (req, res) => {
+//   const [comments] = await Comments.find({});
+//   console.log(comments);
 
-  res.json({
-    comments,
-  });
-});
+//   res.json({
+//     comments,
+//   });
+// });
 
 //댓글을 저장합니다.
-router.post("/comments", async (req, res) => {
+router.get("/comment", async (req, res) => {
   const { comment, createdAt } = req.body;
   console.log(req);
   console.log(req.body);
