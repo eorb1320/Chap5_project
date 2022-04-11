@@ -1,3 +1,39 @@
+<<<<<<< HEAD
+const mongoose = require("mongoose");
+//mongodb 데어터 타입 지정
+const postsSchema = new mongoose.Schema({
+     emaill: {
+         type: String,
+         required: true,
+     },
+    title: {
+        type: String,
+        required: true,
+    },
+    content: {
+        type: String,
+        required: true,
+    },
+    item: {
+        type: String,
+        required: true,
+    },
+    image: {
+        type: String,
+        required: true,
+    },
+     profile: {
+         type: String,
+         required: true,
+     },
+    nickname: {
+        type: String,
+        required: true,
+    },
+    createdAt: {
+        type: Date,
+    },
+=======
 // const mongoose = require("mongoose");
 // //mongodb 데어터 타입 지정
 // const postsSchema = new mongoose.Schema({
@@ -28,6 +64,7 @@
 //     createdAt: {
 //         type: Date,
 //     },
+>>>>>>> ed63c5541958937568019db2b2a116e2cc78568f
 
 // });
 // //기존에 저장되는 id값을 postsId로이용

@@ -47,17 +47,15 @@
 
 
 //작성
-router.post('/posts',  async (req, res) => {
+router.post('/posts', authMiddleware, async (req, res) => {
     try {
         const { title, content, item, image, createdAt } = req.body;
-        console.log(req.body)
-         const { userId } = res.locals;
-        const emaill = userId['emaill']
-        const profile = userId['profile'] 
+        const { userId } = res.locals; 
         //공백값 확인
          if(title !== null && title !== ''&& content !== null && content !== ''&&
         item !== null && item !== ''){
-            const posts = new Posts({ title, content, item, image, createdAt });
+            const posts = new Posts({ title, content, item, image, createdAt, 
+            email:userId.email, profile:userId.profile, nickname:userId.nickname });
             await posts.save();
             res.status(200).send({
                 result: '게시글 작성에 성공하였습니다.'
@@ -73,7 +71,7 @@ router.post('/posts',  async (req, res) => {
 });
 
 //수정
-router.put('/posts/:postId', async (req, res) =>{
+router.put('/posts/:postId',authMiddleware, async (req, res) =>{
     try{
         //파라미터 값
         const{postId} = req.params;
@@ -89,9 +87,6 @@ router.put('/posts/:postId', async (req, res) =>{
             await Posts.updateOne({ postId }, { $set: {  title, content, item, image, createdAt} });
             res.send({ result: "success" });
           }
-          await Posts.updateOne({ postId }, { $set: {  title, content, item, image, createdAt} });
-            res.send({ result: "success" });
-
     }catch(error){
         res.status(400).send({
             errorMessage: "게시글 수정에 실패하였습니다."
@@ -99,7 +94,7 @@ router.put('/posts/:postId', async (req, res) =>{
     }
 });
 //삭제
-router.delete('/posts/:postId', async (req, res) =>{
+router.delete('/posts/:postId', authMiddleware,async (req, res) =>{
     try{
     const{postId} = req.params;
     const{userId} = res.locals;
@@ -108,11 +103,6 @@ router.delete('/posts/:postId', async (req, res) =>{
     if (emaill1 !== emaill2) {
         res.send({ result: "권한이 없습니다." });
       } else {
-        await bords.delete({});
-        res.send({ result: "삭제가 되었습니다." });
-      }
-      const postId1 = await Posts.findOne({postId}).exec();
-      if(postId === postId1){
         await Posts.delete({});
         res.send({ result: "삭제가 되었습니다." });
       }
