@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 //mongodb 데어터 타입 지정
 const postsSchema = new mongoose.Schema({
-    emaill: {
-        type: String,
-        required: true,
-    },
+    // emaill: {
+    //     type: String,
+    //     required: true,
+    // },
     title: {
         type: String,
         required: true,
@@ -21,20 +21,20 @@ const postsSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    profile: {
-        type: String,
-        required: true,
-    },
+    // profile: {
+    //     type: String,
+    //     required: true,
+    // },
     createdAt: {
         type: Date,
     },
 
 });
 //기존에 저장되는 id값을 postsId로이용
-mainsSchema.virtual("postId").get(function () {
+postsSchema.virtual("postId").get(function () {
     return this._id.toHexString();
 });
-mainsSchema.set("toJSON", {
+postsSchema.set("toJSON", {
     virtuals: true,
 });
 
