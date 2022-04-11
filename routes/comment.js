@@ -15,9 +15,10 @@ const router = express.Router();
 //댓글을 저장합니다.
 router.post("/comments/:postId", async (req, res) => {
   const { comment, createdAt } = req.body;
-  const postId = req.params;
+  const postId = JSON.stringify(req.params);
   console.log(postId);
   console.log(typeof postId);
+
   // const userId = res.locals.user._id;
   // const { nickname, userImage } = res.locals.user;
   // console.log(userId);
