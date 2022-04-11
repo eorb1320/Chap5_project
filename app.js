@@ -21,9 +21,9 @@ app.get("/cors-test", (req, res) => {
 
 const commentsRouter = require("./routes/comment");
 
-app.use("/api", [commentsRouter]);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use("/api", [commentsRouter]);
 
 app.listen(port, () => {
   console.log(port, "Server is listening...");
