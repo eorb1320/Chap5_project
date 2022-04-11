@@ -15,7 +15,7 @@ const router = express.Router();
 //댓글을 저장합니다.
 router.post("/comments", async (req, res) => {
   const { comment, createdAt } = req.body;
-  // const postId = req.params;
+  const postId = req.params;
   // const userId = res.locals.user._id;
   // const { nickname, userImage } = res.locals.user;
   // console.log(userId);
@@ -23,6 +23,7 @@ router.post("/comments", async (req, res) => {
   const createdComment = await Comments.create({
     comment,
     createdAt,
+    postId,
   });
 
   res.status(201).json({
