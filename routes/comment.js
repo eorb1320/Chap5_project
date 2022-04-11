@@ -13,7 +13,7 @@ const router = express.Router();
 // });
 
 //댓글을 저장합니다.
-router.get("/comment", async (req, res) => {
+router.post("/comments", async (req, res) => {
   const { comment, createdAt } = req.body;
   console.log(req);
   console.log(req.body);
