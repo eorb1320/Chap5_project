@@ -1,5 +1,5 @@
 const express = require('express')
-const conncet = require('./schmas')
+const conncet = require('./schemas')
 const cors = require('cors')
 const app = express();
 const port = 4000
@@ -7,7 +7,7 @@ const port = 4000
 //db연결
 conncet();
 //미들웨어 지정(main)
-const postRouter = require('./router/post');
+const postRouter = require('./routes/post');
 //이미지 업로드
 // const imgRouter = require('./router/')
 //통신 허용 설정

@@ -1,8 +1,8 @@
 const express = require("express");
-const Posts = require("../schmas/post.js");
+const Posts = require("../schemas/post.js");
 const router = express.Router();
 // const upload = require('./upload');
-const authMiddleware = require('./middlewares/auth-middleware.js');
+const authMiddleware = require('./middlewares/auth-middleware.js.js');
 
 //전체 조회 
 router.get('/postList', async (req, res, next) => {
