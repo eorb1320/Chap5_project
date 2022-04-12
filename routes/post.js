@@ -18,7 +18,7 @@
 // })
 
 // //상세조회
-// router.put('/posts/:postId', async (req, res) => {
+// router.get('/posts/:postId', async (req, res) => {
 //     try {
 //        const {postId} = req.params;
 //        const postList = await Posts.find({postId}).exec();
