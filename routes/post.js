@@ -103,8 +103,8 @@ router.delete('/posts/:postId', authMiddleware,async (req, res) =>{
     if (emaill1 !== emaill2) {
         res.send({ result: "권한이 없습니다." });
       } else {
-        await Posts.deleteOne({ _id: postId });
-        res.send({ result: "삭제가 되었습니다." });
+        await Posts.deleteOne({ postId });
+        res.status(200).send({ result: "삭제가 되었습니다." });
       }
 }catch(error){
     res.status(400).send({
