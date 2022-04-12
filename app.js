@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 
 const app = express();
 const port = 5000;
@@ -30,31 +29,17 @@ db.on("error", console.error.bind(console, "connection error:"));
 
 app.use(cors({ origin: "http://localhost:3000" }));
 
-// const corsOption = {
-//   origin: "http://localhost:3000",
-//   credentials: true,
-// };
-// app.use(cors(corsOption));
-
 app.get("/cors-test", (req, res) => {
   res.send("hi");
 });
 
 const commentsRouter = require("./routes/comment");
-// const usersRouter = require("./routes/user");
-// const { render } = require("express/lib/response");
+const usersRouter = require("./routes/user");
+const postsRouter = require("./routes/post");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(bodyParser.json());
-app.use("/api", [commentsRouter]);
-// app.use("/api", [commentsRouter, usersRouter]);
-
-// app.get("/", async (req,res) => {
-//   // console.log("mainpage")
-//   bodyParser.json()
-//   res.sendFile(__dirname + "/test.html");
-// });
+app.use("/api", [commentsRouter, usersRouter, postsRouter]);
 
 app.listen(port, () => {
   console.log(port, "Server is listening...");
