@@ -10,7 +10,7 @@ router.post("/comments/:postId", authMiddleware, async (req, res) => {
   console.log(postId);
   console.log(typeof postId);
 
-  const userId = res.locals.user._id;
+  const userId = res.locals._id;
   const { nickname, userImage } = res.locals.user;
   console.log(userId);
 
