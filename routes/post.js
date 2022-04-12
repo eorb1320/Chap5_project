@@ -78,10 +78,10 @@ router.put('/posts/:postId',authMiddleware, async (req, res) =>{
         //유저 인증
         const{userId} = res.locals;
         const { title, content, item, image, createdAt } = req.body;
-        const emaill1 = userId['emaill']
-        const emaill2 = await Posts.findOne({postId}).exec();
+        const email1 = userId['email']
+        const email2 = await Posts.findOne({postId}).exec();
         //동일 유저 확인 조건
-        if (emaill1 !== emaill2) {
+        if (email1 !== email2) {
             res.send({ result: "권한이 없음" });
           } else {
             await Posts.updateOne({ postId }, { $set: {  title, content, item, image, createdAt} });
@@ -98,7 +98,7 @@ router.delete('/posts/:postId', authMiddleware,async (req, res) =>{
     try{
     const{postId} = req.params;
     const{userId} = res.locals;
-    const emaill1 = userId['emaill']
+    const emaill1 = userId['email']
     const emaill2 = await Posts.findOne({postId}).exec();
     if (emaill1 !== emaill2) {
         res.send({ result: "권한이 없습니다." });
