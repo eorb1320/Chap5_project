@@ -30,7 +30,7 @@
 //         required: true,
 //     },
 //     createdAt: {
-//         type: Date,
+//         type: String,
 //     },
 
 // // });
