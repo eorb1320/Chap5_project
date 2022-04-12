@@ -3,7 +3,7 @@ const Likes = require("../schmas/like.js");
 const router = express.Router();
 const authMiddleware = require('./middlewares/auth-middleware.js');
 //좋아요 조회
-router.get('/:postId/like',async(req,res)=>{
+router.get('/like',async(req,res)=>{
     try{const { postId } = req.params
     const likes = await Likes.find({ postId })
     const countLikes = likes.length
