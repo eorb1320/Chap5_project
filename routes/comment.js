@@ -1,32 +1,25 @@
 const express = require("express");
 const Comments = require("../schemas/comment");
 const router = express.Router();
-
-// // 테스트 요청
-// router.get("/comments", async (req, res) => {
-//   const [comments] = await Comments.find({});
-//   console.log(comments);
-
-//   res.json({
-//     comments,
-//   });
-// });
+const authMiddleware = require("./middlewares/auth-middleware.js");
 
 //댓글을 저장합니다.
-router.post("/comments/:postId", async (req, res) => {
+router.post("/comments/:postId", authMiddleware, async (req, res) => {
   const { comment, createdAt } = req.body;
   const postId = req.params.postId;
   console.log(postId);
   console.log(typeof postId);
 
-  // const userId = res.locals.user._id;
-  // const { nickname, userImage } = res.locals.user;
-  // console.log(userId);
+  const userId = res.locals._id;
+  const { nickname, userImage } = res.locals.user;
+  console.log(userId);
 
   const createdComment = await Comments.create({
     comment,
     createdAt,
     postId,
+    nickname,
+    userImage,
   });
 
   const comments = await Comments.find({ _id: createdComment._id });
@@ -48,7 +41,7 @@ router.get("/comments/:postId", async (req, res) => {
 });
 
 //댓글을 수정합니다.
-router.put("/comments/:commentId", async (req, res) => {
+router.put("/comments/:commentId", authMiddleware, async (req, res) => {
   const commentId = req.params.commentId;
   const { comment } = req.body;
   console.log(comment, commentId);
@@ -65,7 +58,7 @@ router.put("/comments/:commentId", async (req, res) => {
 });
 
 //댓글을 삭제합니다.
-router.delete("/comments/:commentId", async (req, res) => {
+router.delete("/comments/:commentId", authMiddleware, async (req, res) => {
   const commentId = req.params.commentId;
   console.log(commentId);
 
