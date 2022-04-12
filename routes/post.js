@@ -2,7 +2,7 @@
 // const Posts = require("../schemas/post.js");
 // const router = express.Router();
 // // const upload = require('./upload');
-// const authMiddleware = require('./middlewares/auth-middleware.js.js');
+// const authMiddleware = require('./middlewares/auth-middleware.js');
 
 // //전체 조회 
 // router.get('/postList', async (req, res, next) => {
@@ -103,7 +103,7 @@ router.delete('/posts/:postId', authMiddleware,async (req, res) =>{
     if (emaill1 !== emaill2) {
         res.send({ result: "권한이 없습니다." });
       } else {
-        await Posts.delete({});
+        await Posts.deleteOne({ _id: postId });
         res.send({ result: "삭제가 되었습니다." });
       }
 }catch(error){
