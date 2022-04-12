@@ -30,6 +30,25 @@ router.get("/posts/:postId", async (req, res) => {
   }
 });
 
+
+
+//마이페이지
+router.get('/mypage' ,authMiddleware, async(req,res)=>{
+  try{
+      const{userId} = res.locals;
+      if(userId.email){
+       const mylist =   await Posts.find({email:userId.email}).sort("-createdAt").exec();
+       res.json({mylist})
+      }
+      res.status(400).send({ result: '로그인된 회원이 아닙니다'})
+  }catch(error){
+      res.status(400).send({
+          errorMessage: "조회에 실패하였습니다."
+      });
+  }
+})
+
+
 // router.post('/image', upload.single('image'), async (req, res) => {
 //     const file = await req.file;
 //     //console.log(file);
